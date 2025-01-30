@@ -3,10 +3,10 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 from typing import List, Tuple
 from tqdm import tqdm
 from huggingface_hub import login
-import os  # Add this import
+import os  
 
-# Authentication
-HF_TOKEN = os.getenv("HF_TOKEN")  # Use environment variable instead
+
+HF_TOKEN = os.getenv("HF_TOKEN")  
 login(token=HF_TOKEN)
 
 def load_model_and_tokenizer():
@@ -49,8 +49,8 @@ def generate_branching_responses(
     tokenizer,
     prompt: str,
     num_branches: int = 5,
-    max_length: int = 512,  # Increased for step-by-step reasoning
-    temperature: float = 0.8,  # Slightly increased for more diverse responses
+    max_length: int = 512,  
+    temperature: float = 0.8,  
     top_k: int = 50,
     top_p: float = 0.9
 ) -> Tuple[List[str], List[float]]:
@@ -109,7 +109,7 @@ try:
         print(f'\nResults for prompt {i}:')
         print('Prompt:', prompt, '\n')
         
-        # Sort responses by score and show only the top 3
+       
         sorted_responses = sorted(zip(responses, scores), key=lambda x: x[1], reverse=True)[:3]
         
         for k, (response, score) in enumerate(sorted_responses, 1):
